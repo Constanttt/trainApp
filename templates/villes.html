@@ -9,6 +9,7 @@
     <form action="/trouverCoordonnees" method="POST">
         <p>Départ :<input name="ville1" placeholder="ville1" required/></p>
         <p>Arrivé :<input name="ville2" placeholder="ville2" required/></p>
+        <p>Date de départ :<input type="date" name="date" required/><input type="time" name="heure" value="00:00" required/></p>
         <label for="monnaie">Monnaie :</label>
         <select id="monnaie" name="monnaie" required>
             {% for devise in res %}

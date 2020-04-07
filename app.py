@@ -94,12 +94,16 @@ def trouverCoordonnees():
                 erreur = True
                 messageErreur = "Erreur dans le calcul de la distance"
 
+        #Formattage de la date pour la requete
+        date1 = result['date'] + " " + result['heure']
+        t = datetime.strptime(date1, "%Y-%m-%d %H:%M")
+        horaires = datetime.strftime(t, '%Y%m%dT%H%M%S')
 
         #Requete pour avoir les trajets disponible entre les 2 villes données
         if(not erreur):
             try:
                 adresse2 = 'https://api.sncf.com/v1/coverage/sncf/journeys?'
-                response = requests.get(adresse2, params = {'from':'stop_area:OCE:SA:'+str(cp1), 'to':'stop_area:OCE:SA:'+str(cp2), 'min_nb_journeys': 5}, auth=(TOKEN, ''))
+                response = requests.get(adresse2, params = {'from':'stop_area:OCE:SA:'+str(cp1), 'to':'stop_area:OCE:SA:'+str(cp2), 'min_nb_journeys': 5, 'datetime':horaires}, auth=(TOKEN, ''))
 
                 iti = response.json()
                 devise = result['monnaie']
@@ -146,4 +150,4 @@ def trouverCoordonnees():
 def jsonToArray_iti(json):
     print(json)
 
-#app.run(debug=True)
+app.run(debug=True)
