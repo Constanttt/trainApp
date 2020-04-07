@@ -73,6 +73,8 @@ def trouverCoordonnees():
 
         iti = response.json()
 
+        print(result)
+
         adress = RESTAPI
         response = requests.get(adress, params = {'distance':r, 'monnaie':result['monnaie']})
         prix = response.json()
