@@ -28,7 +28,7 @@ def calculDistance():
 
         r = client.service.calculDistance(result["longitudeA"], result["longitudeB"], result["latitudeA"], result["latitudeB"])
 
-    return render_template('resultatCalcul.html', result=r)
+    return render_template('resultatCalculDistance.html', result=r)
 
 @app.route('/formulaireCalculPrix')
 def formulaireCalculPrix():
@@ -43,7 +43,7 @@ def calculPrix():
 
         r = client.service.calculDistance(result["longitudeA"], result["longitudeB"], result["latitudeA"], result["latitudeB"])
 
-    return render_template('resultatCalcul.html', result=r)
+    return render_template('resultatCalculPrix.html', result=r)
 
 @app.route('/villes')
 def horairesVille():
@@ -133,7 +133,7 @@ def trouverCoordonnees():
 
         #res = {'depart':result['ville1'], 'arrive':result['ville2'], 'distance':r, 'prix':prix, 'iti':tabresultat}
 
-    return render_template('resultatCalcul.html', depart=result['ville1'], arrive=result['ville2'], distance=r, prix=prix, devise=devise, iti=tabresultat)
+    return render_template('resultatCalculHoraires.html', depart=result['ville1'], arrive=result['ville2'], distance="%.2f" % r, prix="%.2f" % prix, devise=devise, iti=tabresultat)
 
 def jsonToArray_iti(json):
     print(json)
