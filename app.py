@@ -68,13 +68,13 @@ def trouverCoordonnees():
 
         r = client.service.calculDistance(coordonnees1[0], coordonnees2[0], coordonnees1[1], coordonnees2[1])
 
-        adresse2 = 'https://api.sncf.com/v1/coverage/sncf/journeys?from=stop_area:OCE:SA:'+str(cp1)+'&to=stop_area:OCE:SA:'+str(cp2)+'&key='+TOKEN
-        response = requests.get(adresse2, params = {'from':r, 'to':'EUR'})
+        adresse2 = 'https://api.sncf.com/v1/coverage/sncf/journeys'
+        response = requests.get(adresse2, params = {'from':'stop_area:OCE:SA:'+str(cp1), 'to':'stop_area:OCE:SA:'+str(cp1)}, auth=(TOKEN, ''))
 
         iti = response.json()
 
         adress = RESTAPI
-        response = requests.get(adress, params = {'distance':r, 'monnaie':'EUR'})
+        response = requests.get(adress, params = {'distance':r, 'monnaie':result['monnaie']})
         prix = response.json()
 
         for i in range(0, 5):
@@ -82,7 +82,7 @@ def trouverCoordonnees():
 
         res = {'depart':result['ville1'], 'arrive':result['ville2'], 'distance':r, 'prix':prix}
 
-    return render_template('resultatCalcul.html', depart=result['ville1'], arrive=result['ville2'], distance=r, prix=prix['prix'], iti=iti)
+    return render_template('resultatCalcul.html', depart=result['ville1'], arrive=result['ville2'], distance=r, prix=prix['prix'])
 
 def jsonToArray_iti(json):
     print(json)
