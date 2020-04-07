@@ -37,13 +37,14 @@ def formulaireCalculPrix():
 @app.route('/calculPrix', methods=['GET','POST'])
 def calculPrix():
     if request.method == 'POST':
-        adresse = ''
-        client = Client(adresse)
         result = request.form
 
-        r = client.service.calculDistance(result["longitudeA"], result["longitudeB"], result["latitudeA"], result["latitudeB"])
+        adress = RESTAPI
+        response = requests.get(adress, params = {'distance':result['distance'], 'monnaie':result['monnaie']})
+        resu = response.json()
+        prix = resu['prix']
 
-    return render_template('resultatCalculPrix.html', result=r)
+    return render_template('resultatCalculPrix.html', result=prix)
 
 @app.route('/villes')
 def horairesVille():
