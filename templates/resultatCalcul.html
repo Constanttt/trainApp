@@ -6,8 +6,14 @@
     <title>Résultat</title>
 </head>
 <body>
-    Prix: {{prix}}
-    Iti : {{iti}}
-    
+    Départ: {{depart}}<br/>
+    Arrivé: {{arrive}}<br/>
+    Distance: {{distance}}<br/>
+    Prix: {{prix}}<br/>
+    Devise: {{devise}}<br/>
+    Trajets disponible : <br/>
+    {% for i in iti %}
+        - {{i}}<br/>
+    {% endfor %}
 </body>
 </html>
