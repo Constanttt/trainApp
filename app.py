@@ -32,7 +32,7 @@ def calculDistance():
 
 @app.route('/formulaireCalculPrix')
 def formulaireCalculPrix():
-    return render_template('calculPrix.html')
+    return render_template('formulaireCalculPrix.html')
 
 @app.route('/calculPrix', methods=['GET','POST'])
 def calculPrix():
