@@ -68,7 +68,7 @@ def trouverCoordonnees():
 
         r = client.service.calculDistance(coordonnees1[0], coordonnees2[0], coordonnees1[1], coordonnees2[1])
 
-        adresse2 = 'https://api.sncf.com/v1/coverage/sncf/journeys'
+        adresse2 = 'https://api.sncf.com/v1/coverage/sncf/journeys?'
         response = requests.get(adresse2, params = {'from':'stop_area:OCE:SA:'+str(cp1), 'to':'stop_area:OCE:SA:'+str(cp1)}, auth=(TOKEN, ''))
 
         iti = response.json()
