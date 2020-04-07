@@ -138,4 +138,4 @@ def trouverCoordonnees():
 def jsonToArray_iti(json):
     print(json)
 
-app.run(debug=True)
+#app.run(debug=True)
