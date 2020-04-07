@@ -4,6 +4,8 @@ from flask import Flask, render_template, request
 from flask_restful import Resource, Api, reqparse
 
 TOKEN = 'cb48489b-567a-4458-8525-517390fb1220'
+SOAPAPI = 'http://soap-api-train-app-constant.herokuapp.com/services/TchouTchou?wsdl'
+RESTAPI ='http://rest-apic-train-app-constant.herokuapp.com/train'
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,7 +21,7 @@ def formulaireCalculDistance():
 @app.route('/calculDistance', methods=['GET','POST'])
 def calculDistance():
     if request.method == 'POST':
-        adresse = 'http://127.0.0.1:8080/Deeee/services/TchouTchou?wsdl'
+        adresse = SOAPAPI
         client = Client(adresse)
         result = request.form
 
@@ -60,7 +62,7 @@ def trouverCoordonnees():
         cp2 = r2['records'][0]['fields']['pltf_uic_code']
 
 
-        adresse = 'http://127.0.0.1:8080/Deeee/services/TchouTchou?wsdl'
+        adresse = SOAPAPI
         client = Client(adresse)
         result = request.form
 
@@ -71,8 +73,7 @@ def trouverCoordonnees():
 
         iti = response.json()
 
-	#TODO change calculerPrix address --> Heroku
-        adress = "http://localhost:5000/calculerPrix"
+        adress = RESTAPI
         response = requests.get(adress, params = {'distance':r, 'monnaie':'EUR'})
         prix = response.json()
 
