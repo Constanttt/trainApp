@@ -7,6 +7,7 @@ from datetime import datetime
 TOKEN = 'cb48489b-567a-4458-8525-517390fb1220'
 SOAPAPI = 'http://soap-api-train-app-constant.herokuapp.com/services/TchouTchou?wsdl'
 RESTAPI ='http://rest-apic-train-app-constant.herokuapp.com/train'
+RESTAPI2 ='http://rest-apic-train-app-constant.herokuapp.com/devises'
 
 app = Flask(__name__)
 api = Api(app)
@@ -32,7 +33,10 @@ def calculDistance():
 
 @app.route('/formulaireCalculPrix')
 def formulaireCalculPrix():
-    return render_template('formulaireCalculPrix.html')
+    adress = RESTAPI2
+    response = requests.get(adress)
+    resu = response.json()
+    return render_template('formulaireCalculPrix.html', res=resu)
 
 @app.route('/calculPrix', methods=['GET','POST'])
 def calculPrix():
@@ -48,7 +52,10 @@ def calculPrix():
 
 @app.route('/villes')
 def horairesVille():
-    return render_template('villes.html')
+    adress = RESTAPI2
+    response = requests.get(adress)
+    resu = response.json()
+    return render_template('villes.html', res=resu)
 
 @app.route('/trouverCoordonnees', methods=['GET','POST'])
 def trouverCoordonnees():
@@ -139,4 +146,4 @@ def trouverCoordonnees():
 def jsonToArray_iti(json):
     print(json)
 
-#app.run(debug=True)
+app.run(debug=True)

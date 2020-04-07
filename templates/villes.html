@@ -9,7 +9,12 @@
     <form action="/trouverCoordonnees" method="POST">
         <p>Départ :<input name="ville1" placeholder="ville1" required/></p>
         <p>Arrivé :<input name="ville2" placeholder="ville2" required/></p>
-        <p>Monnaie :<input name="monnaie" placeholder="monnaie" required/></p>
+        <label for="monnaie">Monnaie :</label>
+        <select id="monnaie" name="monnaie" required>
+            {% for devise in res %}
+                <option value="{{devise}}">{{devise}}</option>
+            {% endfor %}
+        </select>
         <button type="submit">Valider</button>
     </form>
 </body>
